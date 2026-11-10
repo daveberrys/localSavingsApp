@@ -3,15 +3,16 @@ use blenderui::prelude::*;
 struct Hello;
 
 mod handler;
-use handler::read_css_file;
 use handler::savings_reader;
+
+const MAIN_CSS: &str = include_str!("../assets/main.css");
 
 impl Render for Hello {
     fn render(&mut self, _: &mut Window, _: &mut Context<Self>) -> impl IntoElement {
         let savings = savings_reader::read_savings();
 
         rsx! {
-            <style>{read_css_file::read("main.css")}</style>
+            <style>{MAIN_CSS}</style>
             <body>
                 <div class="column">
                     <span class="big">"Local Savings"</span>
